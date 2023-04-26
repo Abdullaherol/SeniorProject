@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     private bool _onUI;
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
         

@@ -10,5 +10,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        userData = new UserData()
+        {
+            level = 1,
+            nickname = "Apo"
+        };
     }
 }
