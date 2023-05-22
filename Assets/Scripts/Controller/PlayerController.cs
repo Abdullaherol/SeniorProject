@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,21 +18,8 @@ public class PlayerController : MonoBehaviour
     {
         _itemManager = ItemManager.Instance;
         _mainCamera = Camera.main;
-        
-        _uiManager.OnItemPanelOpened += UiManagerOnOnItemPanelOpened;
-        _uiManager.OnItemPanelClosed += UiManagerOnOnItemPanelClosed;
     }
-
-    private void UiManagerOnOnItemPanelClosed()
-    {
-        // throw new NotImplementedException();
-    }
-
-    private void UiManagerOnOnItemPanelOpened()
-    {
-        // throw new NotImplementedException();
-    }
-
+    
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -42,11 +30,18 @@ public class PlayerController : MonoBehaviour
 
     private void Fire() //Fire Raycast
     {
+        if(IsMouseOverUI()) return;
+        
         if (!Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, _maxDistance,
                 _layerMask)) return;
 
         if (!_itemManager.GetItem(hit.transform.gameObject, out WorldItem item)) return;
         
         _uiManager.ShowItemPanel(item);
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }

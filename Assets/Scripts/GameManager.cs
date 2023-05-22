@@ -9,12 +9,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-
-        userData = new UserData()
+        if (Instance != null)
         {
-            level = 1,
-            nickname = "Apo"
-        };
+            if (Instance.userData.nickname != string.Empty)
+                FindObjectOfType<MainMenuController>().Hide();
+
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(this);
+
+        Instance = this;
     }
 }

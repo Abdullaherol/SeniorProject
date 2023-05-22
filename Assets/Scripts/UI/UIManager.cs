@@ -25,13 +25,9 @@ public class UIManager : MonoBehaviour
     public delegate void OnItemPanelClosedHandler();
     public delegate void OnWordCompletedHandler(WordSaveData wordSaveData);
     
-    public event OnItemPanelOpenedHandler OnItemPanelOpened;
-    public event OnItemPanelClosedHandler OnItemPanelClosed;
     public event OnWordCompletedHandler OnWordCompleted;
 
     private List<CharacterElement> elements = new List<CharacterElement>();
-
-    private int _hint;
 
     private bool _onUI;
 
@@ -45,9 +41,7 @@ public class UIManager : MonoBehaviour
     public void ShowItemPanel(WorldItem worldItem)
     {
         _onUI = true;
-        
-        _hint = 0;
-        
+
         for (int i = 0; i < _charactersPanel.childCount; i++)
         {
             var child = _charactersPanel.GetChild(i);
@@ -59,8 +53,6 @@ public class UIManager : MonoBehaviour
         _panel.SetActive(true);
         
         _selectedItem = worldItem;
-
-        OnItemPanelOpened?.Invoke();
 
         var saveManager = SaveManager.Instance;
 
@@ -98,8 +90,6 @@ public class UIManager : MonoBehaviour
 
     public void ShowHint()
     {
-        _hint++;
-        
         var emptyCharacters = elements.Where(x => x.field.text == string.Empty).ToList();
 
         if(emptyCharacters.Count == 0) return;
@@ -121,8 +111,6 @@ public class UIManager : MonoBehaviour
         _panel.SetActive(false);
         
         _selectedItem = null;
-        
-        OnItemPanelClosed?.Invoke();
         
         for (int i = 0; i < _charactersPanel.childCount; i++)
         {
