@@ -47,7 +47,7 @@ public class MainMenuController : MonoBehaviour//Main menu controller
     public void Register()//Register process
     {
         var nickname = _register.nickname.text;//get nickname from user input
-        var password = _login.password.text;//get password from user input
+        var password = _register.password.text;//get password from user input
         
         if (nickname == String.Empty || password == String.Empty)//check nickname and password
         {
