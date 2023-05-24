@@ -8,40 +8,39 @@ using UnityEngine;
 using Nethereum.JsonRpc.UnityClient;
 using UnityEngine.SceneManagement;
 
-public class UserScoreUIController : MonoBehaviour
+public class UserScoreUIController : MonoBehaviour//Write user score to user screen.
 {
-    [SerializeField] private TMPro.TextMeshProUGUI _scoreTxt;
-    private int _lastScore;
+    [SerializeField] private TMPro.TextMeshProUGUI _scoreTxt;//score text
+    private int _lastScore;//last score 
 
-    private void Start()
+    private void Start()//Start Function
     {
         _scoreTxt.gameObject.SetActive(false);
         UIManager.Instance.OnWordCompleted += InstanceOnOnWordCompleted;
         UpdateScore();
     }
 
-    private void InstanceOnOnWordCompleted(WordSaveData wordsavedata)
+    private void InstanceOnOnWordCompleted(WordSaveData wordsavedata)//On word completed
     {
-        if (_lastScore != 0)
+        if (_lastScore != 0)//check last score is not 0
         {
-            _lastScore += wordsavedata.CalculatePoint();
-            _scoreTxt.text = "Total Score: "+ _lastScore;
+            _lastScore += wordsavedata.CalculatePoint();//increase score
+            _scoreTxt.text = "Total Score: "+ _lastScore;//update score text
         }
-        // UpdateScore();
     }
 
-    public void ExitLevel()
+    public void ExitLevel()//Exit Level button function
     {
-        StopAllCoroutines();
-        SceneManager.LoadScene(0);
+        StopAllCoroutines();//stop all coroutines
+        SceneManager.LoadScene(0);//load main level
     }
 
-    private void UpdateScore()
+    private void UpdateScore()//update score
     {
-        StartCoroutine(Get());
+        StartCoroutine(Get());//start coroutine to get score data from blockchain
     }
     
-    private IEnumerator Get()
+    private IEnumerator Get()//Get score data from blockchain
     {
         yield return new WaitForSeconds(1f);
         
@@ -50,22 +49,22 @@ public class UserScoreUIController : MonoBehaviour
 
         var queryRequest = new QueryUnityRequest<GetLeaderboardFunction, GetLeaderboardOutputDTO>(url, contractAddress);
         yield return queryRequest.Query(new GetLeaderboardFunction() { N = 250 }, contractAddress);
-        var hasPoint = queryRequest.Result.ReturnValue1.Any(x=>x.User == GameManager.Instance.userData.nickname);
+        var hasPoint = queryRequest.Result.ReturnValue1.Any(x=>x.User == GameManager.Instance.userData.nickname);//Get first 250 users from leaderboard
 
-        if (hasPoint)
+        if (hasPoint)//if leaderboard contains user
         {
-            var user = queryRequest.Result.ReturnValue1.First(x => x.User == GameManager.Instance.userData.nickname);
+            var user = queryRequest.Result.ReturnValue1.First(x => x.User == GameManager.Instance.userData.nickname);//get user data
         
-            _scoreTxt.gameObject.SetActive(true);
+            _scoreTxt.gameObject.SetActive(true);//set visible user score text
             
-            _scoreTxt.text = "Total Score: "+ user.Score;
+            _scoreTxt.text = "Total Score: "+ user.Score;//update user score text 
 
-            _lastScore = (int)user.Score;
+            _lastScore = (int)user.Score;//set score
         }
     }
 
     private void OnDestroy()
     {
-        StopAllCoroutines();
+        StopAllCoroutines();//stop all coroutines
     }
 }

@@ -2,33 +2,33 @@
 using UnityEngine;
 
 [System.Serializable]
-public class MainMenuPanel
+public class MainMenuPanel//Login and Register panel class
 {
-    public GameObject panel;
-    public TMPro.TMP_InputField nickname;
-    public TMPro.TMP_InputField password;
-    public TMPro.TextMeshProUGUI warning;
+    public GameObject panel;//login or register panel
+    public TMPro.TMP_InputField nickname;//nickname text
+    public TMPro.TMP_InputField password;//password text
+    public TMPro.TextMeshProUGUI warning;//warning text
 
-    public void Show()
+    public void Show()//Show panel
     {
-        panel.SetActive(true);
+        panel.SetActive(true);//set panel visible
         
-        ClearInputs();
+        ClearInputs();//clear inputs
     }
 
-    public void ShowWarning(string text)
+    public void ShowWarning(string text)//show warning
     {
-        warning.text = text;
+        warning.text = text;//Set warning text
     }
 
-    public void Hide()
+    public void Hide()//Hide panel
     {
-        panel.SetActive(false);
+        panel.SetActive(false);//set panel invisible
         
-        ClearInputs();
+        ClearInputs();//clear inputs
     }
 
-    private void ClearInputs()
+    private void ClearInputs()//Clear inputs
     {
         nickname.text = String.Empty;
         password.text = String.Empty;

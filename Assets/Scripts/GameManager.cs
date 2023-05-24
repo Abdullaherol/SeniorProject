@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour//Main control game class
 {
-    public static GameManager Instance;
+    public static GameManager Instance;//Singleton
 
-    public UserData userData;
+    public UserData userData;//user data
 
-    private void Awake()
+    private void Awake()//Awake Function for singleton
     {
         if (Instance != null)
         {

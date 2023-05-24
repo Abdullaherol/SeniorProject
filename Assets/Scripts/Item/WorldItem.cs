@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldItem : MonoBehaviour
+public class WorldItem : MonoBehaviour//Word item class
 {
-    public string itemName;
+    public string itemName;//word 
 
-    private void Start()
+    private void Start()//Start function
     {
-        var itemManager = ItemManager.Instance;
+        var itemManager = ItemManager.Instance;//get itemManager instance
         
-        itemManager.AddItem(gameObject,this);
+        itemManager.AddItem(gameObject,this);//add item
 
-        gameObject.layer = 6;
+        gameObject.layer = 6;//set layer to 6
     }
 }

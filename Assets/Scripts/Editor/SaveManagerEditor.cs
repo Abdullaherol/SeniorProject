@@ -2,15 +2,15 @@
 using UnityEngine;
 
 [CustomEditor(typeof(SaveManager))]
-public class SaveManagerEditor : Editor
+public class SaveManagerEditor : Editor//Save Manager Editor Script for custom inspector
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         
-        if(GUILayout.Button("Delete Save"))
+        if(GUILayout.Button("Delete Save"))//Add button to inspector
         {
-            PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteAll();//delete save
         }
     }
 }

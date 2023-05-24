@@ -1,8 +1,8 @@
 ﻿namespace Network
 {
-    public class LoginResponseData
+    public class LoginResponseData//when user login,we store login information like that
     {
-        public string message;
-        public int levelNumber;
+        public string message;//login response
+        public int levelNumber;//saved progress level index
     }
 }
