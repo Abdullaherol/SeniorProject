@@ -14,6 +14,12 @@ public class LevelsMenuController : MonoBehaviour//Levels menu controller
         int levelCount = SceneManager.sceneCountInBuildSettings - 1;//get total level count
 
         var level = GameManager.Instance.userData.level;//get user progress data
+
+        for (int i = 0; i < _content.childCount; i++)
+        {
+            var child = _content.GetChild(i);
+            Destroy(child.gameObject);
+        }
         
         for (int i = 0; i < levelCount; i++)//create level elements and set texts of element
         {
