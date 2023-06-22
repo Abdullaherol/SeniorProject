@@ -1209,6 +1209,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6820408278778116327, guid: 821e7b60e771d57498cd7553eb738766,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820408278778116327, guid: 821e7b60e771d57498cd7553eb738766,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1249369373}
+    - target: {fileID: 6820408278778116327, guid: 821e7b60e771d57498cd7553eb738766,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideItemPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820408278778116327, guid: 821e7b60e771d57498cd7553eb738766,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6820408278835327604, guid: 821e7b60e771d57498cd7553eb738766,
         type: 3}
       propertyPath: m_Name
@@ -1482,6 +1502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d454b4c6164b94a4ff1e50f85b8630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onUI: 0
   _panel: {fileID: 1204020758}
   _scoreText: {fileID: 1204020756}
   _charactersPanel: {fileID: 1204020757}

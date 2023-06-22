@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class UIManager : MonoBehaviour//Control user input and show word panel
 {
     public static UIManager Instance;//Singleton
+    public bool onUI;//User on UI
 
     [SerializeField] private GameObject _panel;//main word panel
     [SerializeField] private TMPro.TextMeshProUGUI _scoreText;//word score text
@@ -25,7 +26,6 @@ public class UIManager : MonoBehaviour//Control user input and show word panel
 
     private List<CharacterElement> elements = new List<CharacterElement>();//ui charcter elements list
 
-    private bool _onUI;//User on UI
 
     private void Awake()//Awake Function
     {
@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour//Control user input and show word panel
 
     public void ShowItemPanel(WorldItem worldItem)//Show Word Item Panel
     {
-        _onUI = true;//set on uı
+        onUI = true;//set on uı
 
         for (int i = 0; i < _charactersPanel.childCount; i++)//Clear previous word character elements
         {
@@ -100,7 +100,7 @@ public class UIManager : MonoBehaviour//Control user input and show word panel
 
     public void HideItemPanel()//Hide word item panel
     {
-        _onUI = false;//set onUI false
+        onUI = false;//set onUI false
         
         _panel.SetActive(false);//set panel invisible
         
@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour//Control user input and show word panel
 
     private void Update()//Update Function
     {
-        if(_onUI == false) return;//if onUI is false return
+        if(onUI == false) return;//if onUI is false return
 
         if (Input.GetKeyDown(KeyCode.Backspace))//if user key backspace
         {

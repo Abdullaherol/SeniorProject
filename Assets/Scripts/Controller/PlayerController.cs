@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour//Control player input and trigger 
 
     private Camera _mainCamera;
 
-    private bool _onItemPanel;
-
     private void Start()//When scene started,this function triggered 
     {
         _itemManager = ItemManager.Instance;
@@ -31,6 +29,8 @@ public class PlayerController : MonoBehaviour//Control player input and trigger 
     private void Fire() //Fire Raycast
     {
         if(IsMouseOverUI()) return;//Check Mouse over UI
+        
+        if(_uiManager.onUI) return;
         
         if (!Physics.Raycast(_mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, _maxDistance,
                 _layerMask)) return;//With physics api,sending a ray and when ray hit item, take item component
